@@ -9,7 +9,8 @@ config={
         "highlightCol": "#E30B5C"
     },
     "data": {
-        "n": 5,
+        "minN": 5,
+        "maxN": 12,
         "min": 5,
         "max": 60
     }

@@ -6,19 +6,29 @@ function pieChart() {
 
   // Set up data
   const radius = Math.min(width, height) / 2 - margin;
-  const data = generateData(config.data.n, config.data.min, config.data.max);
+  const n = d3.randomInt(config.data.minN, config.data.maxN)();
+  const data = generateData(n, config.data.min, config.data.max);
   const pie = d3.pie().value((d) => d.value);
   const pieData = pie(
     Object.entries(data).map(([key, value]) => ({ key, value }))
   );
   const total = Object.values(data).reduce((sum, val) => sum + val, 0);
-  var percentA = ((data['a'] / total) * 100).toFixed(0);
+  var percentA = ((data["a"] / total) * 100).toFixed(0);
 
   // Set the color scale
   const colPalette = config.style.colPalette;
-  const newPalette = [config.style.highlightCol].concat(
-    d3.shuffle(colPalette).slice(0, config.data.n - 1)
-  );
+  const highlightCol = config.style.highlightCol;
+  const shuffled = d3.shuffle(colPalette);
+  const needed = n - 1;
+  let baseCols = shuffled.slice(0, Math.min(needed, shuffled.length));
+  if (baseCols.length < needed) {
+    const interpolated = d3.range(needed).map((i) => {
+      const t = i / (needed - 1);
+      return d3.interpolateRgbBasis(baseCols)(t);
+    });
+    baseCols = interpolated;
+  }
+  const newPalette = [highlightCol].concat(baseCols);
   const color = d3.scaleOrdinal().domain(Object.keys(data)).range(newPalette);
 
   // Select the chart container and clear any existing content
@@ -45,7 +55,7 @@ function pieChart() {
     .enter()
     .append("path")
     .attr("d", (d) => arcGenerator(d))
-    .attr("fill", d => color(d.data.key))
+    .attr("fill", (d) => color(d.data.key))
     .attr("stroke", "black")
     .style("stroke-width", "2px");
 
@@ -54,8 +64,8 @@ function pieChart() {
     .data(pieData)
     .enter()
     .append("text")
-    .text(d => sentenceCase(d.data.key))
-    .attr("transform", d => "translate(" + arcGenerator.centroid(d) + ")")
+    .text((d) => sentenceCase(d.data.key))
+    .attr("transform", (d) => "translate(" + arcGenerator.centroid(d) + ")")
     .style("text-anchor", "middle")
     .style("font-size", 30);
 
