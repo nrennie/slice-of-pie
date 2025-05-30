@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', Times New Roman, serif;
+    font-weight: bold;
+}
+
+* {
+    font-family: 'Commissioner', Arial, sans-serif;
+}
+
+a {
+    color: #508080;
+}
+
+a:hover {
+    color: #E30B5C;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #F0F5F5;
+    color: #2F4F4F;
+}
+
+main {
+    padding-bottom: 40px !important;
+}
+
+.title {
+    padding-top: 20px
+}
+
+.subtitle {
+    padding-bottom: 5px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+.page-wrap {
+    min-height: 100%;
+    margin-bottom: -40px; 
+}
+
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+
+.site-footer, .page-wrap:after {
+    height: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.resize {
+    max-width: 500px;
+    margin: auto;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 16px; /* taller track */
+  background: #ddd;
+  border-radius: 0; /* no rounded corners */
+  margin: 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #E30B5C;
+  cursor: pointer;
+  border-radius: 0; 
+  margin-top: -2px; 
+  border: none;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #E30B5C;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 16px;
+  border-radius: 0;
+  background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+  height: 16px;
+  border-radius: 0;
+  background: #ccc;
+}
+
+#sliderContainer button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #508080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.2s ease;
+}
+
+#sliderContainer button:hover {
+  background-color: #2F4F4F;
+}
+
+#sliderContainer button:active {
+  background-color: #E30B5C;
+}
